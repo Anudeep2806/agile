@@ -1,15 +1,12 @@
 package com.agileprojectmanagement.projectmanagement.projects;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.agileprojectmanagement.projectmanagement.Clients.Clients;
+import com.agileprojectmanagement.projectmanagement.resources.Resources;
 
 
 @Entity 
@@ -33,98 +30,103 @@ public class Projects {
         @JoinColumn(name="ClientId",referencedColumnName = "id")
         private Clients clients;
 
-		public long getProjectCode() {
-			return projectCode;
-		}
+	    @OneToMany(mappedBy = "projects",cascade = CascadeType.ALL)
+		private List<Resources> resources;
 
-		public void setProjectCode(long projectCode) {
-			this.projectCode = projectCode;
-		}
+	public long getProjectCode() {
+		return projectCode;
+	}
 
-		public String getTitle() {
-			return title;
-		}
+	public void setProjectCode(long projectCode) {
+		this.projectCode = projectCode;
+	}
 
-		public void setTitle(String title) {
-			this.title = title;
-		}
+	public String getTitle() {
+		return title;
+	}
 
-		public long getBudget() {
-			return budget;
-		}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-		public void setBudget(long budget) {
-			this.budget = budget;
-		}
+	public long getBudget() {
+		return budget;
+	}
 
-		public LocalDate getStartDate() {
-			return startDate;
-		}
+	public void setBudget(long budget) {
+		this.budget = budget;
+	}
 
-		public void setStartDate(LocalDate startDate) {
-			this.startDate = startDate;
-		}
+	public LocalDate getStartDate() {
+		return startDate;
+	}
 
-		public LocalDate getExpectedEndDate() {
-			return expectedEndDate;
-		}
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
 
-		public void setExpectedEndDate(LocalDate expectedEndDate) {
-			this.expectedEndDate = expectedEndDate;
-		}
+	public LocalDate getExpectedEndDate() {
+		return expectedEndDate;
+	}
 
-		public LocalDate getCreatedOn() {
-			return createdOn;
-		}
+	public void setExpectedEndDate(LocalDate expectedEndDate) {
+		this.expectedEndDate = expectedEndDate;
+	}
 
-		public void setCreatedOn(LocalDate createdOn) {
-			this.createdOn = createdOn;
-		}
+	public LocalDate getCreatedOn() {
+		return createdOn;
+	}
 
-		public String getStatus() {
-			return status;
-		}
+	public void setCreatedOn(LocalDate createdOn) {
+		this.createdOn = createdOn;
+	}
 
-		public void setStatus(String status) {
-			this.status = status;
-		}
+	public String getStatus() {
+		return status;
+	}
 
-		public LocalDate getLastUpdatedOn() {
-			return lastUpdatedOn;
-		}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-		public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
-			this.lastUpdatedOn = lastUpdatedOn;
-		}
+	public LocalDate getLastUpdatedOn() {
+		return lastUpdatedOn;
+	}
 
-		public Clients getClients() {
-			return clients;
-		}
+	public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
+		this.lastUpdatedOn = lastUpdatedOn;
+	}
 
-		public void setClients(Clients clients) {
-			this.clients = clients;
-		}
+	public Clients getClients() {
+		return clients;
+	}
 
-		public Projects() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
 
-		public Projects(long projectCode, String title, long budget, LocalDate startDate, LocalDate expectedEndDate,
-				LocalDate createdOn, String status, LocalDate lastUpdatedOn, Clients clients) {
-			super();
-			this.projectCode = projectCode;
-			this.title = title;
-			this.budget = budget;
-			this.startDate = startDate;
-			this.expectedEndDate = expectedEndDate;
-			this.createdOn = createdOn;
-			this.status = status;
-			this.lastUpdatedOn = lastUpdatedOn;
-			this.clients = clients;
-		}
-		
-		
-        
-        
+	public List<Resources> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<Resources> resources) {
+		this.resources = resources;
+	}
+
+	public Projects(long projectCode, String title, long budget, LocalDate startDate, LocalDate expectedEndDate, LocalDate createdOn, String status, LocalDate lastUpdatedOn, Clients clients, List<Resources> resources) {
+		this.projectCode = projectCode;
+		this.title = title;
+		this.budget = budget;
+		this.startDate = startDate;
+		this.expectedEndDate = expectedEndDate;
+		this.createdOn = createdOn;
+		this.status = status;
+		this.lastUpdatedOn = lastUpdatedOn;
+		this.clients = clients;
+		this.resources = resources;
+	}
+
+	public Projects() {
+		super();
+	}
 }

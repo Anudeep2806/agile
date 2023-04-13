@@ -1,8 +1,9 @@
 package com.agileprojectmanagement.projectmanagement.resources;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.agileprojectmanagement.projectmanagement.Clients.Clients;
+import com.agileprojectmanagement.projectmanagement.projects.Projects;
+
+import javax.persistence.*;
 
 @Entity
 public class Resources {
@@ -20,63 +21,77 @@ public class Resources {
       private String phno;
 	  @Column(name="role",length=20)
       private String role;
-	  @Column(name="projectCode",length=10)
-      private long projectCode;
+	  @ManyToOne(targetEntity = Projects.class,cascade = CascadeType.ALL)
+	  @JoinColumn(name="projectCode",referencedColumnName = "projectCode")
+	  private Projects projects;
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPhno() {
 		return phno;
 	}
+
 	public void setPhno(String phno) {
 		this.phno = phno;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public long getProjectCode() {
-		return projectCode;
+
+	public Projects getProjects() {
+		return projects;
 	}
-	public void setProjectCode(long projectCode) {
-		this.projectCode = projectCode;
+
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
-	public Resources() {
-		super();
-	}
-	public Resources(String userId, String firstName, String lastName, String email, String phno, String role,
-			long projectCode) {
-		super();
+
+	public Resources(String userId, String firstName, String lastName, String email, String phno, String role, Projects projects) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phno = phno;
 		this.role = role;
-		this.projectCode = projectCode;
-	} 
-	
+		this.projects = projects;
+	}
+
+	public Resources() {
+		super();
+	}
 }
